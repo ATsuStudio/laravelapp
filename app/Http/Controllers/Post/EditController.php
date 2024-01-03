@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 
-class EditController extends Controller
+class EditController extends BaseController
 {
     public function __invoke(Post $post){
         $tags = Tag::all();
