@@ -43,8 +43,6 @@ Route::group(['namespace' => 'Post'], function(){
 
 
 
-Route::get('/auth', [AuthController::class, 'index'])->name('auth.index');
-
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 
 
