@@ -2,34 +2,17 @@
 
 namespace App\Http\Controllers\Post;
 
-use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\StoreRequest;
 use App\Models\Post;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
-    public function __invoke(){
-        $data = request()->validate([
-            'title' => 'string',
-            'content' => 'string',
-            'thumbnail' => 'string',
-            'likes' => '',
-            'is_published' => '',
-            'category_id' =>'',
-            'tags' =>''
-        ]);
-        $tags = $data['tags'];
-        unset($data['tags']);
-
-        $data['is_published'] = isset($data['is_published'])? 1:0;
-        $post = Post::create($data);
-
-        $post->tags()->attach($tags);
-        // foreach ($tags as $key => $tag) {
-        //     PostTag::firstOrCreate([
-        //         'tag_id' => $tag,
-        //         'post_id' => $post->id
-        //     ]);
-        // }
+    public function __invoke(StoreRequest $request){
+        $data = $request->validated();
+        
+        $this->_service->store($data);
+        
+        
         return redirect()->route('posts.index');
     }
 }
