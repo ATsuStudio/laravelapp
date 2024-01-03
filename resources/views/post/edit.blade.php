@@ -64,6 +64,35 @@
           </div>
         </div>
 
+        
+        <div class="col-md-5  mb-2">
+          <label for="country" class="form-label">Select your tag</label>
+          <select class="form-select" multiple="" aria-label="multiple select example" name="tags[]">
+            @foreach ($tags as $tag)
+
+              {{ $is_selected = false }}
+
+              @foreach ($selectedTags as $sTag)
+
+                @if ($sTag->title == $tag->title)
+                  <option class="rounded" selected value="{{$tag->id}}">{{$tag->title}}</option>
+                  {{ $is_selected = true }}
+                @endif
+                
+              @endforeach
+              @if (!$is_selected)
+                <option class="rounded" value="{{$tag->id}}">{{$tag->title}}</option>
+              @endif
+
+            @endforeach
+          </select>
+          <div class="invalid-feedback">
+            Please select a tag.
+          </div>
+
+
+
+      </div>
 
         <button class="btn btn-success" type="submit">Save</button>
         <a class="btn btn-secondary" href="{{ route('posts.show', $post->id) }}">Cancel</a>

@@ -29,7 +29,8 @@ class UpdateRequest extends FormRequest
             'thumbnail' => 'string',
             'likes' => '',
             'is_published' => '',
-            'category_id' =>''
+            'category_id' =>'',
+            'tags' =>''
         ];
     }
 }
