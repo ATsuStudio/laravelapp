@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Category::factory(5)->create();
-        $posts = Post::factory(10)->create();
-        $tags = Tag::factory(5)->create();
+        Category::factory(10)->create();
+        $posts = Post::factory(100)->create();
+        $tags = Tag::factory(10)->create();
 
         foreach ($posts as $key => $post) {
             $tagIDs = $tags->random(5)->pluck('id');
