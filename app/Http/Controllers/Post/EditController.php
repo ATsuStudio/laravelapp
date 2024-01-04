@@ -9,6 +9,10 @@ use App\Models\Tag;
 
 class EditController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
     public function __invoke(Post $post){
         $tags = Tag::all();
         $selectedTags = $post->tags;

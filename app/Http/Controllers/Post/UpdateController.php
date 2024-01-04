@@ -8,6 +8,10 @@ use App\Http\Requests\Post\UpdateRequest;
 
 class UpdateController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
     public function __invoke(UpdateRequest $request, Post $post){
         $data = $request->validated();
 

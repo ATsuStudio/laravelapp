@@ -8,6 +8,10 @@ use App\Http\Controllers\Controller;
 
 class CreateController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
     public function __invoke(){
         $categories = Category::all();
         $tags = Tag::all();

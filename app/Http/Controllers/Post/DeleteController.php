@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 
 class DeleteController extends BaseController
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
     public function __invoke(Post $post){
         $post->delete();
         return redirect()->route('posts.index');
