@@ -29,7 +29,4 @@ class Service{
         $post->tags()->sync($tags);
     }
     
-    public function test(){
-        dd('test');
-    }
 }

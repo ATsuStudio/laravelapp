@@ -37,9 +37,7 @@ Route::group([
 
 
 Route::group([
-
     'middleware' => 'auth:api'
-
 ], function ($router) {
 
     Route::get('/posts', [IndexController::class, '__invoke']);

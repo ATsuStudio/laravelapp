@@ -2,27 +2,23 @@
 
 namespace App\Http\Controllers\Post;
 
-use App\Http\Requests\Post\StoreRequest;
 use App\Models\Post;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\StoreRequest;
 
 class StoreController extends BaseController
 {
-    public function __construct()
-    {
-        $this->middleware('admin');
-        $this->middleware('auth');
-    }
+
     public function __invoke(StoreRequest $request){
+        
+        $this->middleware('admin');
+
+
         $data = $request->validated();
         
-        $tags = $data['tags'];
-        unset($data['tags']);
 
-        $data['is_published'] = isset($data['is_published'])? 1:0;
-        $post = Post::create($data);
+        $this->_service->store( $data);
 
-        $post->tags()->attach($tags);
-        
         
         return redirect()->route('posts.index');
     }
