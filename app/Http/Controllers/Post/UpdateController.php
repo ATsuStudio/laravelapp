@@ -11,6 +11,7 @@ class UpdateController extends BaseController
     public function __construct()
     {
         $this->middleware('admin');
+        $this->middleware('auth');
     }
     public function __invoke(UpdateRequest $request, Post $post){
         $data = $request->validated();

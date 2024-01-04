@@ -30,7 +30,9 @@ class FilterRequest extends FormRequest
             'likes' => '',
             'is_published' => '',
             'category_id' =>'',
-            'tags' =>''
+            'tags' =>'',
+            'page' => '',
+            'perPage' => ''
         ];
     }
 }
