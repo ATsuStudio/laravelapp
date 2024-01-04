@@ -11,8 +11,8 @@ use Illuminate\Http\Request;
 class IndexController extends BaseController
 {
     public function __construct(){
-        $this->middleware('auth');
-        $this->middleware('getRole');
+        // $this->middleware('auth');
+        // $this->middleware('getRole');
     }
     public function __invoke(Request $request, FilterRequest $filterRequest){
         $role = $request->input('user_role');
@@ -29,7 +29,7 @@ class IndexController extends BaseController
 
         $filter = app()->make(PostFilter::class, ['queryParams' => array_filter($data)]);
         $posts = Post::filter($filter)->paginate($perPage, ['*'], 'page', $page);
-
-        return view('post.index', compact('posts'));
+        return $posts;
+        //return view('post.index', compact('posts'));
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -36,10 +37,10 @@ Route::group([
 });
 
 
-Route::group([
-    'middleware' => 'auth:api'
-], function ($router) {
+Route::get('/posts', [IndexController::class, '__invoke']);
+// Route::group([
+//     'middleware' => 'auth:api',
+// ], function ($router) {
 
-    Route::get('/posts', [IndexController::class, '__invoke']);
 
-});
+// });
