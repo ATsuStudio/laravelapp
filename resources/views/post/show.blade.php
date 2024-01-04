@@ -27,7 +27,7 @@
 
         <div class="col-md-5  mb-2">
             <label class="text-muted">Published</label>
-            <p class="bg-white rounded shadow-sm p-2">{{ $post->likes ==1 ? 'Yes': 'No'}}</p>
+            <p class="bg-white rounded shadow-sm p-2">{{ $post->is_published ==1 ? 'Yes': 'No'}}</p>
         </div>
 
         <div class="col-md-5  mb-2">
@@ -47,6 +47,7 @@
 
         
 
+        @can('view', auth()->user())
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
             <a class="btn btn-primary mb-2" href="{{ route('posts.edit', $post->id) }}">Edit</a>
             <form action="{{route('posts.delete', $post->id)}}" method="post">
@@ -55,6 +56,7 @@
                 <button class="btn btn-danger" type="submit">Delete</button>
             </form>
         </div>
+        @endcan
     
     </div>
 </main>

@@ -14,7 +14,13 @@ class StoreController extends BaseController
     public function __invoke(StoreRequest $request){
         $data = $request->validated();
         
-        $this->_service->store($data);
+        $tags = $data['tags'];
+        unset($data['tags']);
+
+        $data['is_published'] = isset($data['is_published'])? 1:0;
+        $post = Post::create($data);
+
+        $post->tags()->attach($tags);
         
         
         return redirect()->route('posts.index');

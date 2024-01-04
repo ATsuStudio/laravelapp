@@ -15,7 +15,16 @@ class UpdateController extends BaseController
     public function __invoke(UpdateRequest $request, Post $post){
         $data = $request->validated();
 
-        $this->_service->update($post, $data);
+
+        $tags = isset($data['tags'])? $data['tags'] : [];
+
+        unset($data['tags']);
+
+        $data['is_published'] = isset($data['is_published'])? 1:0;
+        $post->update($data);
+
+        $post->tags()->sync($tags);
+        
         
         return redirect()->route('posts.show',  $post->id);
     }

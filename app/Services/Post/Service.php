@@ -19,6 +19,7 @@ class Service{
 
 
     public function update($post, $data){
+        dd($post, $data);
         $tags = $data['tags'];
         unset($data['tags']);
 
@@ -26,5 +27,9 @@ class Service{
         $post->update($data);
 
         $post->tags()->sync($tags);
+    }
+    
+    public function test(){
+        dd('test');
     }
 }

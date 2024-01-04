@@ -9,13 +9,15 @@ class PostFilter extends AbstractFilter
     public const TITLE = 'title';
     public const CONTENT = 'content';
     public const CATEGORY_ID = 'category_id';
+    public const IS_PUBLISHED = 'is_published';
 
     protected function getCallbacks(): array
     {
         return [
             self::TITLE => [$this, 'title'],
             self::CONTENT => [$this, 'content'],
-            self::CATEGORY_ID => [$this, 'categoryId']
+            self::CATEGORY_ID => [$this, 'categoryId'],
+            self::IS_PUBLISHED => [$this, 'isPublished']
         ];
     }
     public function title(Builder $builder, $value){
@@ -28,6 +30,9 @@ class PostFilter extends AbstractFilter
     
     public function categoryId(Builder $builder, $value){
         $builder->where('category_id', $value);
+    }
+    public function isPublished(Builder $builder, $value){
+        $builder->where('is_published', $value);
     }
 
 }
