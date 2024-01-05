@@ -3,19 +3,24 @@
 namespace App\Http\Controllers\Post;
 
 use App\Models\Post;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\UpdateRequest;
 
 class UpdateController extends BaseController
 {
-    public function __invoke(UpdateRequest $request, Post $post){
+    public function __invoke(Request $req, UpdateRequest $request, Post $post){
+        $resType = $req->input('resoponse');
         $this->middleware('admin');
 
         $data = $request->validated();
 
         $result = $this->_service->update($post, $data);      
         
-        return $result? "Post updated successful" : "Something went wrong";
-        //return redirect()->route('posts.show',  $post->id);
+        if($resType == 'api'){
+            return $result? "Post updated successful" : "Something went wrong";
+        }else{
+            return redirect()->route('posts.show',  $post->id);
+        }
     }
 }

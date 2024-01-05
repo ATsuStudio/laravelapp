@@ -56,5 +56,5 @@ Route::group([
     Route::post('/posts',  [StoreController::class, '__invoke']);
     Route::get('/posts/{post}',  [ShowController::class, '__invoke']);
     Route::post('/posts/{post}',  [UpdateController::class, '__invoke']);
-    Route::delete('/posts/{post}/delete',  [DeleteController::class, '__invoke']);
+    Route::delete('/posts/{post}',  [DeleteController::class, '__invoke']);
 });
