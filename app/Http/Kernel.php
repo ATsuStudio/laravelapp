@@ -3,7 +3,9 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminAccessMiddleware;
+use App\Http\Middleware\ApiResponseMiddleware;
 use App\Http\Middleware\GetUserRoleMiddleware;
+use App\Http\Middleware\GuardSwicherMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -44,8 +46,11 @@ class Kernel extends HttpKernel
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            GuardSwicherMiddleware::class
         ],
     ];
+   
+
 
     /**
      * The application's route middleware.
@@ -66,6 +71,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => AdminAccessMiddleware::class,
-        'getRole' => GetUserRoleMiddleware::class
+        'getRole' => GetUserRoleMiddleware::class,
+        'api_res' => ApiResponseMiddleware::class
     ];
 }

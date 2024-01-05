@@ -1,10 +1,16 @@
 <?php
 
-use App\Http\Controllers\AboutController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Post\EditController;
+use App\Http\Controllers\Post\ShowController;
 use App\Http\Controllers\Post\IndexController;
+use App\Http\Controllers\Post\StoreController;
+use App\Http\Controllers\Post\CreateController;
+use App\Http\Controllers\Post\DeleteController;
+use App\Http\Controllers\Post\UpdateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +29,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::group([
-
-    'middleware' => 'api',
+    'middleware' => [
+        'api'
+    ],
     'prefix' => 'auth'
 
 ], function ($router) {
@@ -37,10 +44,17 @@ Route::group([
 });
 
 
-Route::get('/posts', [IndexController::class, '__invoke']);
-// Route::group([
-//     'middleware' => 'auth:api',
-// ], function ($router) {
-
-
-// });
+Route::group([
+    'namespace' => 'Post',
+    'middleware' => [
+        'jwt.auth',
+        'api_res',
+        'getRole'
+    ],
+], function ($router) {
+    Route::get('/posts', [IndexController::class, '__invoke']);
+    Route::post('/posts',  [StoreController::class, '__invoke']);
+    Route::get('/posts/{post}',  [ShowController::class, '__invoke']);
+    Route::post('/posts/{post}',  [UpdateController::class, '__invoke']);
+    Route::delete('/posts/{post}/delete',  [DeleteController::class, '__invoke']);
+});

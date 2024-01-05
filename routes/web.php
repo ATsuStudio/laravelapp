@@ -28,7 +28,13 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 
 
-Route::group(['namespace' => 'Post'], function(){
+Route::group([
+    'namespace' => 'Post',
+     'middleware' => [
+        'auth',
+        'getRole'
+     ]
+], function(){
     Route::get('/posts', [IndexController::class, '__invoke'])->name('posts.index');
     Route::get('/posts/create',  [CreateController::class, '__invoke'])->name('posts.create');
     Route::post('/posts',  [StoreController::class, '__invoke'])->name('posts.store');

@@ -17,9 +17,9 @@ class StoreController extends BaseController
         $data = $request->validated();
         
 
-        $this->_service->store( $data);
+        $result = $this->_service->store( $data);
 
-        
-        return redirect()->route('posts.index');
+        return $result? "Post created successful" : "Something went wrong";
+        //return redirect()->route('posts.index');
     }
 }

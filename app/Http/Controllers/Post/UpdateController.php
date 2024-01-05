@@ -13,8 +13,9 @@ class UpdateController extends BaseController
 
         $data = $request->validated();
 
-        $this->_service->update($post, $data);      
+        $result = $this->_service->update($post, $data);      
         
-        return redirect()->route('posts.show',  $post->id);
+        return $result? "Post updated successful" : "Something went wrong";
+        //return redirect()->route('posts.show',  $post->id);
     }
 }
