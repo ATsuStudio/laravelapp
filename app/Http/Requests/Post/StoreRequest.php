@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
         return [
             'title' => 'string',
             'content' => 'string',
-            'thumbnail' => 'string',
+            'thumbnail' => '',
             'likes' => '',
             'is_published' => '',
             'category_id' =>'',

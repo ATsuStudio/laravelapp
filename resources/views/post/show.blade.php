@@ -9,16 +9,26 @@
             </svg>
         </a>
         
+        
         <h1>Post: {{ $post->title }}</h1>
+
+        {{-- <div class="col-md-5  mb-2">
+            <label class="text-muted">Thumbnail</label>
+            <p class="bg-white rounded shadow-sm p-2">
+                <img class="rounded" src="{{ $post->thumbnail }}" alt=""></p>
+        </div> --}}
+
+        <figure class="figure">
+            <img src="{{ asset('storage/' . $post->thumbnail) }}" class="figure-img img-fluid col-md-5 rounded" alt="">
+        </figure>
+        
+
+
         <div class="col-md-5  mb-2">
             <label class="text-muted">Content</label>
             <p class="bg-white rounded shadow-sm p-2">{{ $post->content }}</p>
         </div>
 
-        <div class="col-md-5  mb-2">
-            <label class="text-muted">Thumbnail</label>
-            <p class="bg-white rounded shadow-sm p-2">{{ $post->thumbnail }}</p>
-        </div>
 
         <div class="col-md-5  mb-2">
             <label class="text-muted">Likes</label>

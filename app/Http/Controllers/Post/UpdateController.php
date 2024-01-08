@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Post;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Post\UpdateRequest;
 
 class UpdateController extends BaseController
@@ -20,7 +21,7 @@ class UpdateController extends BaseController
         if($resType == 'api'){
             return $result? "Post updated successful" : "Something went wrong";
         }else{
-            return redirect()->route('posts.show',  $post->id);
+            return  $result? redirect()->route('posts.show',  $post->id) : "Something went wrong";
         }
     }
 }

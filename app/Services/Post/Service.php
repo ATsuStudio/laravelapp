@@ -4,6 +4,7 @@ namespace App\Services\Post;
 
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class Service
 {
@@ -13,10 +14,21 @@ class Service
 
         try {
             DB::beginTransaction(); 
+            
+            if(isset($data['thumbnail'])){
+                $fileObj = $data['thumbnail'];
+                $filename = $fileObj->getClientOriginalName();
+                $imagePath = $fileObj->storeAs('public/images/thumbnails/' . date("Y-m-d"), rand(1000, 9999) . '_'. $filename);
+                $data['thumbnail'] = str_replace("public/", "", $imagePath);
+            }
 
-            $tags = $data['tags'];
-            unset($data['tags']);
-
+            if(isset($data['tags'])){
+                $tags = $data['tags'];
+                unset($data['tags']);
+            }
+            else{
+                $tags = [];
+            }
             $data['is_published'] = isset($data['is_published']) ? 1 : 0;
             $post = Post::create($data);
 
@@ -36,8 +48,21 @@ class Service
         try {
             DB::beginTransaction();
 
-            $tags = $data['tags'];
-            unset($data['tags']);
+            if(isset($data['thumbnail'])){
+                $fileObj = $data['thumbnail'];
+                $filename = $fileObj->getClientOriginalName();
+                $imagePath = $fileObj->storeAs('public/images/thumbnails/' . date("Y-m-d"), rand(1000, 9999) . '_'. $filename);
+                $data['thumbnail'] = str_replace("public/", "", $imagePath);
+            }
+
+            if(isset($data['tags'])){
+                $tags = $data['tags'];
+                unset($data['tags']);
+            }
+            else{
+                $tags = [];
+            }
+
 
             $data['is_published'] = isset($data['is_published']) ? 1 : 0;
             $post->update($data);

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Post;
 
 use App\Models\Post;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Post\StoreRequest;
 use Illuminate\Http\Request;
 
@@ -18,13 +19,12 @@ class StoreController extends BaseController
 
         $data = $request->validated();
         
-
-        $result = $this->_service->store( $data);
+        $result = $this->_service->store($data);
 
         if($resType == 'api'){
             return $result? "Post created successful" : "Something went wrong";
         }else{
-            return redirect()->route('posts.index');
+            return $result? redirect()->route('posts.index') : "Something went wrong";
         }
     }
 }

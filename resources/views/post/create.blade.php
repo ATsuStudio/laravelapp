@@ -4,7 +4,7 @@
 <main>
     <div class="container">
         <h1>Create post</h1>
-        <form action="{{ route('posts.store') }}" method="post">
+        <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data" >
             @csrf
             <div class="col-12">
                 <label for="title"  class="form-label">Title</label>
@@ -25,12 +25,18 @@
 
             
             <div class="col-12">
-                <label for="content"  class="form-label">Image path</label>
-                <input type="text" class="form-control" id="title" name="thumbnail" placeholder="Some path" required="">
-                <div class="invalid-feedback">
-                  Please enter your Image path.
-                </div>
+              <label for="content"  class="form-label">Image</label>
+  
+              <div class="input-group mb-3">
+                <input type="file" class="form-control" name="thumbnail" id="inputGroupFile02">
+                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+              </div>
+
+              <div class="invalid-feedback">
+                Please enter your thumbnail.
+              </div>
             </div>
+  
 
             <div class="col-12">
                 <label for="content"  class="form-label">Likes</label>

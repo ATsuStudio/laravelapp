@@ -4,6 +4,7 @@ namespace App\Http\Requests\Post;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Http\UploadedFile;
 class UpdateRequest extends FormRequest
 {
     /**
@@ -26,7 +27,7 @@ class UpdateRequest extends FormRequest
         return [
             'title' => 'string',
             'content' => 'string',
-            'thumbnail' => 'string',
+            'thumbnail' => '',
             'likes' => '',
             'is_published' => '',
             'category_id' =>'',

@@ -5,7 +5,7 @@
     <div class="container">
     <h1>Edit post</h1>
     {{-- <form action="{{ route('posts.update', $post->id)}}" method="patch"> --}}
-    <form action="{{ route( 'posts.update', $post->id) }}" method="post">
+    <form action="{{ route( 'posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         
         <div class="col-12">
@@ -27,12 +27,29 @@
 
         
         <div class="col-12">
-            <label for="content"  class="form-label">Image path</label>
-            <input type="text" class="form-control" id="title" name="thumbnail" placeholder="Some path" required="" value="{{$post->thumbnail}}">
+            <label for="content"  class="form-label">Image</label>
+
+           
+
+            <div class="input-group mb-3">
+              <input type="file" class="form-control" name="thumbnail" id="inputGroupFile02">
+              <label class="input-group-text" for="inputGroupFile02">Upload</label>
+            </div>
+            @if (asset('storage/' . $post->thumbnail))
+              <figure class="figure">
+                <img src="{{ asset('storage/' . $post->thumbnail) }}" class="figure-img img-fluid col-md-5 rounded" alt="">
+              </figure>
+            @endif
+
             <div class="invalid-feedback">
               Please enter your thumbnail.
             </div>
         </div>
+
+
+
+
+
 
         <div class="col-12">
             <label for="content"  class="form-label">Likes</label>
