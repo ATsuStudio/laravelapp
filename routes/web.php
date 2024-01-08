@@ -48,6 +48,27 @@ Route::group([
 
 
 
+Route::group([
+    'namespace' => 'Profile',
+     'middleware' => [
+        'auth',
+        'getRole'
+     ]
+], function(){
+    Route::get('/profile/create',  [CreateController::class, '__invoke'])->name('profile.create');
+    Route::post('/profile',  [StoreController::class, '__invoke'])->name('profile.store');
+    Route::get('/profile/{post}',  [ShowController::class, '__invoke'])->name('profile.show');
+    Route::get('/profile/{post}/edit',  [EditController::class, '__invoke'])->name('profile.edit');
+    Route::post('/profile/{post}',  [UpdateController::class, '__invoke'])->name('profile.update');
+    Route::delete('/profile/{post}/delete',  [DeleteController::class, '__invoke'])->name('profile.delete');
+});
+
+
+
+
+
+
+
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 
 
