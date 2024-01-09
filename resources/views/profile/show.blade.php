@@ -60,16 +60,19 @@
 
 
                                 @if ($profile->user_id == $auth_id)
-                                    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 g-2">
-                                        <a class="btn btn-primary mb-2"
+
+                                    <div class="row p-2">
+                                        <a class="btn btn-primary mb-2 col-sm"
                                             href="{{ route('profiles.edit', $user_id) }}">Edit</a>
 
-                                        <form action="{{ route('profiles.delete', $user_id) }}" method="post">
+                                        <form action="{{ route('profiles.delete', $user_id) }}" class="col-3" method="post">
                                             @csrf
                                             @method('delete')
-                                            <button class="btn btn-danger" type="submit">Delete</button>
+                                            <button class="btn btn-danger col-sm" type="submit">Delete</button>
                                         </form>
+
                                     </div>
+
                                 @endif
                                 
                             </div>

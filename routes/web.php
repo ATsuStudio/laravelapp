@@ -56,6 +56,7 @@ Route::group([
         'getRole'
      ]
 ], function(){
+    Route::get('/profile',  [ProfileController::class, 'index'])->name('profiles.index');
     Route::get('/profile/{user}/create',  [ProfileController::class, 'create'])->name('profiles.create');
     Route::post('/profile/{user}/store',  [ProfileController::class, 'store'])->name('profiles.store');
     Route::get('/profile/{user}',  [ProfileController::class, 'show'])->name('profiles.show');

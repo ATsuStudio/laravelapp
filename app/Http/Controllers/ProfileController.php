@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Profile\StoreRequest;
 use App\Http\Requests\Profile\UpdateRequest;
+use App\Http\Resources\Profile\ProfileResource;
 use view;
 use App\Models\User;
 use App\Models\Profile;
@@ -23,9 +24,17 @@ class ProfileController extends Controller
      * Display a listing of the resource.
      *
      */
-    public function index()
+    public function index(Request $request)
     {
-        // No will be use
+        
+        $resType = $request->input('resoponse');
+        $profiles = Profile::paginate(10);
+
+        if($resType == 'api' ){
+            return ProfileResource::collection($profiles);
+        }else{
+            return view('profile.index', compact('profiles'));
+        }
     }
 
     /**

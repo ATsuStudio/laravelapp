@@ -22,6 +22,9 @@
                         <a href="{{ route('posts.index') }}" class="nav-link">Posts</a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('profiles.index') }}" class="nav-link">Peoples</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('about.index') }}" class="nav-link">About</a>
                     </li>
 
