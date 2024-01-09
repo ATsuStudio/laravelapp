@@ -9,6 +9,9 @@
 
                 <div class="card-body">
                     
+
+
+                  
                     <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
                         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
                           <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
@@ -38,11 +41,13 @@
                         <hr>
                         <div class="dropdown">
                           <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                            
+                            <img src="{{ isset($profile->logo) ? asset('storage/' .  $profile->logo) : asset('storage/images/resources/default_avatar.jpg') }}" alt="" width="32" height="32" class="rounded-circle me-2">
+                            
                             <strong>{{ isset($profile) ? $profile->first_name: $user->name}}</strong>
                           </a>
                           <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                            <li><a class="dropdown-item" href=" {{ route('profiles.index', $user->id) }} ">Profile</a></li>
+                            <li><a class="dropdown-item" href=" {{ route('profiles.show', $user->id) }} ">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -58,6 +63,10 @@
                         </div>
                     </div>
             
+
+
+
+
 
                 </div>
             </div>

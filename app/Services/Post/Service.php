@@ -65,6 +65,7 @@ class Service
 
 
             $data['is_published'] = isset($data['is_published']) ? 1 : 0;
+            dd($post, $data);
             $post->update($data);
 
             $post->tags()->sync($tags);

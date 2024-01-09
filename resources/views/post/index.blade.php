@@ -3,7 +3,7 @@
 
 <div class="container">
     <h1 class="mt-2">Posts</h1>
-    @can('view', auth()->user())
+      @can('view', auth()->user())
         <a class="btn btn-primary mb-2" href="{{ route('posts.create') }}">Create new post</a>
     @endcan
     <ul class="list-group list-group-flush mb-2">

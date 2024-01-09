@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -55,12 +56,12 @@ Route::group([
         'getRole'
      ]
 ], function(){
-    Route::get('/profile/create',  [CreateController::class, '__invoke'])->name('profile.create');
-    Route::post('/profile',  [StoreController::class, '__invoke'])->name('profile.store');
-    Route::get('/profile/{post}',  [ShowController::class, '__invoke'])->name('profile.show');
-    Route::get('/profile/{post}/edit',  [EditController::class, '__invoke'])->name('profile.edit');
-    Route::post('/profile/{post}',  [UpdateController::class, '__invoke'])->name('profile.update');
-    Route::delete('/profile/{post}/delete',  [DeleteController::class, '__invoke'])->name('profile.delete');
+    Route::get('/profile/{user}/create',  [ProfileController::class, 'create'])->name('profiles.create');
+    Route::post('/profile/{user}/store',  [ProfileController::class, 'store'])->name('profiles.store');
+    Route::get('/profile/{user}',  [ProfileController::class, 'show'])->name('profiles.show');
+    Route::get('/profile/{user}/edit',  [ProfileController::class, 'edit'])->name('profiles.edit');
+    Route::post('/profile/{user}',  [ProfileController::class, 'update'])->name('profiles.update');
+    Route::delete('/profile/{user}',  [ProfileController::class, 'destroy'])->name('profiles.delete');
 });
 
 

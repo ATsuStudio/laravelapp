@@ -29,8 +29,6 @@
         <div class="col-12">
             <label for="content"  class="form-label">Image</label>
 
-           
-
             <div class="input-group mb-3">
               <input type="file" class="form-control" name="thumbnail" id="inputFile">
               <label class="input-group-text" accept="image/png, image/gif, image/jpeg"  for="inputGroupFile02">Upload</label>
