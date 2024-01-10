@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 abstract class AbstractFilter implements IFilter
 {
     /** @var array */
-    private $queryParams = [];
+    protected $queryParams = [];
  
     /**
      * AbstractFilter constructor.

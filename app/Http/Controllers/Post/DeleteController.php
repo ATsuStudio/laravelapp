@@ -8,19 +8,20 @@ use Illuminate\Http\Request;
 
 class DeleteController extends BaseController
 {
-    public function __construct()
-    {
-        $this->middleware('admin');
-    }
     public function __invoke(Request $request, Post $post){
         $resType = $request->input('resoponse');
-        
-        $post->delete();
+        $is_deleted = true;
+        try {
+            $post->delete();
+        } catch (\Throwable $th) {
+            $is_deleted= false;
+        }
 
         if($resType == 'api'){
             return "Post deleted successful";
         }else{
-            return redirect()->route('posts.index');
+            return $is_deleted ? redirect()->route('posts.index')->with('delete', '1') 
+                                : redirect()->route('posts.index')->with('delete', '0');
         }
     }
 }

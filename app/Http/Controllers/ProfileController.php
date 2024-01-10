@@ -26,14 +26,18 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
-        
+        $acc_user = Auth::user();
+        $acc_profile = Profile::where('user_id', $acc_user->id)->first();
+
+
+
         $resType = $request->input('resoponse');
         $profiles = Profile::paginate(10);
 
         if($resType == 'api' ){
             return ProfileResource::collection($profiles);
         }else{
-            return view('profile.index', compact('profiles'));
+            return view('profile.index', compact('profiles', 'acc_profile', 'acc_user'));
         }
     }
 

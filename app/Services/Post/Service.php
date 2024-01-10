@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Service
 {
 
-    public function store($data)
+    public function store($data, $acc_user)
     {
 
         try {
@@ -29,6 +29,8 @@ class Service
             else{
                 $tags = [];
             }
+            $data['author'] = $acc_user->id;
+
             $data['is_published'] = isset($data['is_published']) ? 1 : 0;
             $post = Post::create($data);
 
@@ -65,7 +67,7 @@ class Service
 
 
             $data['is_published'] = isset($data['is_published']) ? 1 : 0;
-            dd($post, $data);
+            
             $post->update($data);
 
             $post->tags()->sync($tags);

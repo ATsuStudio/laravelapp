@@ -21,7 +21,8 @@ class UpdateController extends BaseController
         if($resType == 'api'){
             return $result? "Post updated successful" : "Something went wrong";
         }else{
-            return  $result? redirect()->route('posts.show',  $post->id) : "Something went wrong";
+            return $result ? redirect()->route('posts.show',  $post->id)->with('update', '1') 
+                            : redirect()->route('posts.show',  $post->id)->with('update', '0');
         }
     }
 }

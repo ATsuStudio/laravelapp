@@ -10,6 +10,7 @@ class PostFilter extends AbstractFilter
     public const CONTENT = 'content';
     public const CATEGORY_ID = 'category_id';
     public const IS_PUBLISHED = 'is_published';
+    public const ACC_USER = 'acc_user';
 
     protected function getCallbacks(): array
     {
@@ -32,7 +33,10 @@ class PostFilter extends AbstractFilter
         $builder->where('category_id', $value);
     }
     public function isPublished(Builder $builder, $value){
-        $builder->where('is_published', $value);
+        $accUser = $this->queryParams['acc_user'];
+        $author_id = $accUser->id;
+        $builder->where('is_published', $value)->orWhere('author', $author_id) ;
     }
+    
 
 }

@@ -26,12 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        $profiles = Profile::where('user_id', $user->id)->get();
-        if(!isset($profiles[0])){
-            return view('home', compact('user'));
+       
+        $acc_user = Auth::user();
+        $acc_profile = Profile::where('user_id', $acc_user->id)->first();
+        if(!isset($acc_profile)){
+            return view('home', compact('acc_user'));
         }
-        $profile = $profiles[0];
-        return view('home', compact('profile', 'user'));
+
+        return view('home', compact('acc_profile', 'acc_user'));
     }
 }
