@@ -43,6 +43,7 @@ Route::group([
     Route::get('/posts/{post}/edit',  [EditController::class, '__invoke'])->name('posts.edit');
     Route::post('/posts/{post}',  [UpdateController::class, '__invoke'])->name('posts.update');
     Route::delete('/posts/{post}/delete',  [DeleteController::class, '__invoke'])->name('posts.delete');
+
 });
 
 

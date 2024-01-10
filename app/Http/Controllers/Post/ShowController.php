@@ -24,7 +24,7 @@ class ShowController extends BaseController
         
         //dd($resType );
         if($resType == 'api' ){
-            return new PostResource($post, $category);
+            return new PostResource($post);
         }else{
             return view('post.show', compact('post', 'category', 'tags', 'acc_user', 'author'));
         }

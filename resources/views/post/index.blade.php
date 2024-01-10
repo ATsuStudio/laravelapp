@@ -1,5 +1,6 @@
-@extends('layouts.index')
-@section('main')
+@extends('layouts.app')
+
+@section('content')
     <div class="container">
         <div class="row justify-content-center mt-3">
 
@@ -41,6 +42,7 @@
                                         <a class="btn btn-primary mb-2 " href="{{ route('posts.create') }}">Create new post</a>
                                         <div data-bs-spy="scroll"  data-bs-offset="0" class="scrollspy-example-2" tabindex="0">
                                             @foreach ($posts as $key => $post)
+
                                             <div class="card mb-2" style="width: 28rem;">
                                                 <img class="card-img-top" src="{{ asset('storage/' . $post->thumbnail) }}" alt="Card image cap">
                                                 <div class="card-body">
@@ -49,6 +51,7 @@
                                                   <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary">Go to post</a>
                                                 </div>
                                               </div>
+                                              
                                             @endforeach
                                         </div>
                                        

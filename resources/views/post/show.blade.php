@@ -30,20 +30,50 @@
             @endif
 
 
+            <div class="d-flex d-flex-row">
+                <strong style="color:rgb(255, 136, 0); font-size: 1.3rem" >#</strong><strong style="font-size: 1.3rem">{{ $category->title }}</strong>
+            </div>
+
+            @if (count($tags) > 0)
+                <div class="col-md-5  mb-2">
+                    @foreach ($tags as $tag)
+                        <span class="badge rounded-pill bg-info text-dark p-1">{{ $tag->title }}</span>
+                    @endforeach
+                </div>
+            @endif
 
 
-            <h1>Post: {{ $post->title }}</h1>
+            <h1 class="fw-bold">{{ $post->title }}</h1>
 
-            {{-- <div class="col-md-5  mb-2">
-            <label class="text-muted">Thumbnail</label>
-            <p class="bg-white rounded shadow-sm p-2">
-                <img class="rounded" src="{{ $post->thumbnail }}" alt=""></p>
-        </div> --}}
+            <div class="d-flex d-flex-row">
+                <p class="bg-white rounded shadow-sm">{{ $author->name }}</p>
+                <p class="p-1"></p>
+                <p class="bg-white rounded shadow-sm">{{  date("d-m-Y", strtotime($post->created_at)) }} </p>
+            </div>
 
-            <figure class="figure">
+
+            <figure style="margin: 0;" class="figure">
                 <img src="{{ asset('storage/' . $post->thumbnail) }}" class="figure-img img-fluid col-md-5 rounded"
                     alt="">
             </figure>
+
+
+
+            <div class="d-flex justify-content-between align-items-center col-md-5  mb-2">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-success" id="btn-like" post="{{ $post->id }}" acc_user="{{$acc_user->id}}" >Like</button>
+                    
+                    @if ($post->author == $acc_user->id)
+                        <a class="btn btn-sm btn-outline-secondary" href="{{ route('posts.edit', $post->id) }}">Edit</a>
+                        <form  action="{{ route('posts.delete', $post->id) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
+                        </form>
+                    @endif  
+                </div>
+                <small class="text-muted" >{{ $post->likes }} likes</small>
+            </div>
 
 
 
@@ -52,48 +82,7 @@
                 <p class="bg-white rounded shadow-sm p-2">{{ $post->content }}</p>
             </div>
 
-            <div class="col-md-5  mb-2">
-                <label class="text-muted">Author</label>
-                <p class="bg-white rounded shadow-sm p-2">{{ $author->name }}</p>
-            </div>
 
-            <div class="col-md-5  mb-2">
-                <label class="text-muted">Likes</label>
-                <p class="bg-white rounded shadow-sm p-2">{{ $post->likes }}</p>
-            </div>
-
-            <div class="col-md-5  mb-2">
-                <label class="text-muted">Published</label>
-                <p class="bg-white rounded shadow-sm p-2">{{ $post->is_published == 1 ? 'Yes' : 'No' }}</p>
-            </div>
-
-            <div class="col-md-5  mb-2">
-                <label class="text-muted">Category</label>
-                <p class="bg-white rounded shadow-sm p-2">{{ $category->title }}</p>
-            </div>
-
-            @if (count($tags) > 0)
-                <div class="col-md-5  mb-2">
-                    <label class="text-muted">Tags</label>
-                    @foreach ($tags as $tag)
-                        <span class="badge rounded-pill bg-info text-dark p-1">{{ $tag->title }}</span>
-                    @endforeach
-                </div>
-            @endif
-
-
-
-
-            @if ($post->author == $acc_user->id)
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-                    <a class="btn btn-primary mb-2" href="{{ route('posts.edit', $post->id) }}">Edit</a>
-                    <form action="{{ route('posts.delete', $post->id) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <button class="btn btn-danger" type="submit">Delete</button>
-                    </form>
-                </div>
-            @endif
 
         </div>
     </main>

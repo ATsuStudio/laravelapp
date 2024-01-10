@@ -22,6 +22,6 @@
     @include('blocks.header')
     @yield('main') 
     @yield('footer')
-    <script src="{{ asset("js/changePreview.js") }}"></script>
+    @include('scripts.main')
 </body>
 </html>

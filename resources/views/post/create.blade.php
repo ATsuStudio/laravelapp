@@ -41,14 +41,6 @@
             </div>
   
 
-            <div class="col-12">
-                <label for="content"  class="form-label">Likes</label>
-                <input type="number" class="form-control" id="likes" name="likes" placeholder="Some likes" required="">
-                <div class="invalid-feedback">
-                  Please enter your likes.
-                </div>
-            </div>
-
             <div class="form-check">
                 <input type="checkbox" name="is_published" class="form-check-input" id="same-address">
                 <label class="form-check-label" for="same-address">It Publish</label>

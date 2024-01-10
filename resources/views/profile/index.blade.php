@@ -1,16 +1,13 @@
-@extends('layouts.index')
-@section('main')
+@extends('layouts.app')
+
+@section('content')
     <div class="container">
         <div class="row justify-content-center mt-3">
             <div class="card">
                 <div class="card-header">Peoples</div>
                 <div class="card-body">
                     <div class="row">
-
                         @include('blocks.sidebar')
-
-
-
 
                         <div class="my-3 p-3 bg-white rounded box-shadow col-md">
                             @foreach ($profiles as $key => $profile)
@@ -38,10 +35,6 @@
                                 </div>
                             </small>
                         </div>
-
-
-
-
 
                     </div>
                 </div>
