@@ -61,7 +61,7 @@
 
             <div class="d-flex justify-content-between align-items-center col-md-5  mb-2">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-success" id="btn-like" post="{{ $post->id }}" acc_user="{{$acc_user->id}}" >Like</button>
+                    <button type="button" class="btn btn-sm btn-outline-success {{$is_liked? 'active': ''}}" id="btn-like" post="{{ $post->id }}" acc_user="{{$acc_user->id}}" >Like</button>
                     
                     @if ($post->author == $acc_user->id)
                         <a class="btn btn-sm btn-outline-secondary" href="{{ route('posts.edit', $post->id) }}">Edit</a>
@@ -72,7 +72,12 @@
                         </form>
                     @endif  
                 </div>
-                <small class="text-muted" >{{ $post->likes }} likes</small>
+                <div>
+                    <small id="likes-count-label">{{ $post->likes }}</small>
+                    <small class="text-muted" >likes</small>
+
+                </div>
+
             </div>
 
 

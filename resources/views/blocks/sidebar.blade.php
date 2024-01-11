@@ -1,14 +1,6 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-light sticky-sm-top" style="width: 280px; height: max-content;">
-    <a href="/"
-        class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <svg class="bi me-2" width="40" height="32">
-            <use xlink:href="#bootstrap"></use>
-        </svg>
-        <span class="fs-4">Sidebar</span>
-    </a>
-    <hr>
-    @if(Route::current()->getName() == 'profiles.index')
-    @endif
+    
+    
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
             <a href="/" class="nav-link {{ Route::current()->getName() == 'home.index' ? "active" : "link-dark" }}" >

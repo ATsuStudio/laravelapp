@@ -10,11 +10,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\Post\PostResource;
 use App\Http\Controllers\Post\BaseController;
+use App\Models\Post_reaction;
 
 class ShowController extends BaseController
 {
     public function __invoke(Request $request, Post $post){
         $acc_user = Auth::user();
+        $is_liked = false;
+        $post_like = Post_reaction::where('post_id', $post->id)->where('user_id', $acc_user->id)->where('action', 1)->first();
+
+        if($post_like){
+            $is_liked = true;
+        }
 
         $resType = $request->input('resoponse');
 
@@ -26,7 +33,7 @@ class ShowController extends BaseController
         if($resType == 'api' ){
             return new PostResource($post);
         }else{
-            return view('post.show', compact('post', 'category', 'tags', 'acc_user', 'author'));
+            return view('post.show', compact('post', 'category', 'tags', 'acc_user', 'author', 'is_liked'));
         }
     }
 }

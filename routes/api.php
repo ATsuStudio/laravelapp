@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Post\LikeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -57,4 +58,5 @@ Route::group([
     Route::get('/posts/{post}',  [ShowController::class, '__invoke']);
     Route::post('/posts/{post}',  [UpdateController::class, '__invoke']);
     Route::delete('/posts/{post}',  [DeleteController::class, '__invoke']);
+    Route::post('/posts/{post}/like',  [LikeController::class, '__invoke']);
 });
