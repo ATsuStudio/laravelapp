@@ -31,7 +31,7 @@
 
 
             <div class="d-flex d-flex-row">
-                <strong style="color:rgb(255, 136, 0); font-size: 1.3rem" >#</strong><strong style="font-size: 1.3rem">{{ $category->title }}</strong>
+                <strong style="color:rgb(255, 102, 0); font-size: 1.3rem" >#</strong><strong style="font-size: 1.3rem">{{ $category->title }}</strong>
             </div>
 
             @if (count($tags) > 0)
@@ -39,6 +39,10 @@
                     @foreach ($tags as $tag)
                         <span class="badge rounded-pill bg-info text-dark p-1">{{ $tag->title }}</span>
                     @endforeach
+                    
+                    @if ($post->author == $acc_user->id || $acc_user->role == "admin")
+                        <span class="badge rounded-pill bg-dark p-1">{{ $post->is_published ? 'Public' : 'Private' }}</span>
+                    @endif
                 </div>
             @endif
 
@@ -52,8 +56,8 @@
             </div>
 
 
-            <figure style="margin: 0;" class="figure">
-                <img src="{{ asset('storage/' . $post->thumbnail) }}" class="figure-img img-fluid col-md-5 rounded"
+            <figure style="width: 40%;" class="figure">
+                <img src="{{ asset('storage/' . $post->thumbnail) }}" class="figure-img img-fluid col-md-5 rounded card-img-top"
                     alt="">
             </figure>
 

@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Post\FilterRequest;
 use App\Http\Resources\Post\PostResource;
+use App\Models\Category;
+use App\Models\Tag;
 
 class IndexController extends BaseController
 {
@@ -17,6 +19,8 @@ class IndexController extends BaseController
         $acc_user = Auth::user();
         $acc_profile = Profile::where('user_id', $acc_user->id)->first();
 
+        $allCategories = Category::all();
+        $allTags = Tag::all();
 
         $resType = $request->input('resoponse');
         $role = $request->input('user_role');
@@ -40,7 +44,7 @@ class IndexController extends BaseController
         if($resType == 'api' ){
             return PostResource::collection($posts);
         }else{
-            return view('post.index', compact('posts', 'acc_user' , 'acc_profile'));
+            return view('post.index', compact('posts', 'acc_user' , 'acc_profile', 'allCategories', 'allTags'));
         }
     }
 }

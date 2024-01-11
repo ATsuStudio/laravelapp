@@ -62,7 +62,7 @@
               @endforeach
           </select>
           <div class="invalid-feedback">
-            Please select a valid country.
+            Please select a valid category.
           </div>
         </div>
 
